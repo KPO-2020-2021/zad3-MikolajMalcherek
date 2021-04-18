@@ -17,6 +17,7 @@
 #include "vector.hh"
 #include "matrix.hh"
 #include "../include/lacze_do_gnuplota.hh"
+#include "rectangle.hh"
 
 /*!
  * Simple main program that demontrates how access
@@ -27,6 +28,9 @@
 
 #define DL_KROTKI_BOK  100
 #define DL_DLUGI_BOK   150
+
+#define PI 3.14159265
+
 
 /*!
  * Przyklad zapisu wspolrzednych zbioru punktow do strumienia wyjściowego.
@@ -42,33 +46,38 @@
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-void PrzykladZapisuWspolrzednychDoStrumienia( std::ostream&     StrmWy, 
-                                              double       Przesuniecie
-                                            )
+
+rectangle prostokat;
+
+
+void PrzykladZapisuWspolrzednychDoStrumienia( std::ostream& StrmWy, rectangle prostokat)
 {
+
+
+
+
    //---------------------------------------------------------------
    // To tylko przyklad !!!
    // W programie nalezy uzywać pojęcia wektora, a nie oddzielnych 
    // zmiennych do reprezentowania wspolrzednych!
    //
-  double  x1, y1, x2, y2, x3, y3, x4, y4; 
+  /*double  x1, y1, x2, y2, x3, y3, x4, y4; 
 
   x1 = y1 = 10;
   x2 = x1 + DL_DLUGI_BOK;  y2 = y1;
   x3 = x2;  y3 = y2 + DL_KROTKI_BOK;
-  x4 = x3 - DL_DLUGI_BOK; y4 = y3;
+  x4 = x3 - DL_DLUGI_BOK; y4 = y3;*/
 
 
-  StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << x1+Przesuniecie 
-         << std::setw(16) << std::fixed << std::setprecision(10) << y1+Przesuniecie << std::endl;
-  StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << x2+Przesuniecie 
-         << std::setw(16) << std::fixed << std::setprecision(10) << y2+Przesuniecie << std::endl;
-  StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << x3+Przesuniecie 
-         << std::setw(16) << std::fixed << std::setprecision(10) << y3+Przesuniecie << std::endl;
-  StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << x4+Przesuniecie 
-         << std::setw(16) << std::fixed << std::setprecision(10) << y4+Przesuniecie << std::endl;
-  StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << x1+Przesuniecie 
-         << std::setw(16) << std::fixed << std::setprecision(10) << y1+Przesuniecie << std::endl; 
+
+
+
+
+       StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << prostokat(0,0) << std::endl;
+       StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << prostokat(0,1) << std::endl;
+       StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << prostokat(1,0) << std::endl;
+       StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << prostokat(1,1) << std::endl;
+       StrmWy << std::setw(16) << std::fixed << std::setprecision(10) << prostokat(0,0) << std::endl;
                              // Jeszcze raz zapisujemy pierwszy punkt,
                              // aby gnuplot narysowal zamkniętą linię.
 }
@@ -87,9 +96,7 @@ void PrzykladZapisuWspolrzednychDoStrumienia( std::ostream&     StrmWy,
  * \retval true - gdy operacja zapisu powiodła się,
  * \retval false - w przypadku przeciwnym.
  */
-bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
-                                         double       Przesuniecie
-                                       )
+bool PrzykladZapisuWspolrzednychDoPliku(const char  *sNazwaPliku, rectangle prostokat)
 {
   std::ofstream  StrmPlikowy;
 
@@ -100,7 +107,7 @@ bool PrzykladZapisuWspolrzednychDoPliku( const char  *sNazwaPliku,
     return false;
   }
 
-  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy, Przesuniecie);
+  PrzykladZapisuWspolrzednychDoStrumienia(StrmPlikowy, prostokat);
 
   StrmPlikowy.close();
   return !StrmPlikowy.fail();
@@ -118,20 +125,48 @@ int main() {
             << std::endl;
   // std::system("cat ../LICENSE");
   // do zadania Rotacja 2D
-  std::cout << "Vector:" << std::endl;
-  Vector tmpV1 = Vector();
-  std::cout << "Vector - konstruktor bezparametryczny:\n" << tmpV1 << std::endl;
-  double argumentsV[] = {1.0, 2.0};
-  Vector tmpV2 = Vector(argumentsV);
-  std::cout << "Vector - konstruktor parametryczny:\n" << tmpV2 << std::endl;
 
-  std::cout << "Matrix:" << std::endl;
-  Matrix tmpM1 = Matrix();
-  std::cout << "Matrix - konstruktor bezparametryczny:\n" << tmpM1 << std::endl;
-  double argumentsM[][SIZE] = {{1.0, 2.0},{3.0, 4.0}};
+
+
+
+
+
+std::cout << "o - obrot prostokata o zadany kat" << std::endl;
+std::cout << "p - przesuniecie prostokata o zadany wektor" << std::endl;
+std::cout << "w - wyswietlenie wspolrzednych wierzcholkow" << std::endl;
+std::cout << "m - wyswietl menu" << std::endl;
+std::cout << "u - wyswietl prostokat" << std::endl;
+std::cout << "k - koniec dzialania programu" << std::endl;
+
+
+
+
+
+
+
+
+rectangle prostokat;
+double wie1[]={20.0, 20.0};
+double wie2[]={300.0, 20.0};
+double wie3[]={300.0, 200.0};
+double wie4[]={20.0, 200.0};
+prostokat(0,0)=Vector(wie1);
+prostokat(0,1)=Vector(wie2);
+prostokat(1,0)=Vector(wie3);
+prostokat(1,1)=Vector(wie4);
+
+
+
+
+
+/*
+  std::cout << "Prostokat:" << std::endl;
+  rectangle prost1=rectangle();
+  std::cout << "Prostokat - konstruktor bezparametryczny:\n" << tmpM1 << std::endl;
+  rectangle argumentsM() = tmpV2;
   Matrix tmpM2 = Matrix(argumentsM);
   std::cout << "Matrix - konstruktor parametryczny:\n" << tmpM2 << std::endl;
-
+*/
     PzG::LaczeDoGNUPlota  Lacze;  // Ta zmienna jest potrzebna do wizualizacji
                                 // rysunku prostokata
 
@@ -154,23 +189,96 @@ int main() {
    //
   Lacze.ZmienTrybRys(PzG::TR_2D);
 
-  PrzykladZapisuWspolrzednychDoStrumienia(std::cout,0);
-  if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/prostokat.dat",0)) return 1;
+
+
+
+Matrix macierzsinicos;
+double kat;
+int ileobrotow;
+char wybor;
+Vector wektor_przes;
+while(1){
+       std::cout << "Podaj opcje dzialania:" << std::endl;
+       std::cin >> wybor;
+switch(wybor)
+{
+       case 'o':
+              std::cout << "Podaj wartosc kata:" << std::endl;
+              std::cin >> kat;
+              std::cout << sin(kat*PI/180) << std::endl;
+
+              std::cout << "Ile razy ma byc wykonany obrot?" << std::endl;
+              std::cin >> ileobrotow;
+              
+              for(int i = 0 ; i<ileobrotow ; i++)
+              {
+              macierzsinicos.obliczaniesinicos(kat,macierzsinicos);
+              std::cout << "Macierz: " << std::endl;
+              std::cout << macierzsinicos;
+
+
+              
+
+              prostokat.rotacja(macierzsinicos,prostokat);
+
+              std::cout << prostokat;
+
+              }
+
+
+
+              break;
+       case 'p':     
+                     std::cout << "Podaj wartosci wektora(np. 1-enter 1-enter):" << std::endl;
+                     std::cin >> wektor_przes;
+                     prostokat.przesuniecie(wektor_przes, prostokat);
+              break;
+       case 'w':
+                     std::cout << "Wierzcholki:" << prostokat << std::endl;
+              break;
+       case 'm':
+                     std::cout << "o - obrot prostokata o zadany kat" << std::endl;
+                     std::cout << "p - przesuniecie prostokata o zadany wektor" << std::endl;
+                     std::cout << "w - wyswietlenie wspolrzednych wierzcholkow" << std::endl;
+                     std::cout << "m - wyswietl menu" << std::endl;
+                     std::cout << "u - wyswietl prostokat" << std::endl;
+                     std::cout << "k - koniec dzialania programu" << std::endl;
+                     
+              break;
+       case 'k':
+              return 0;
+              break;
+       case 'u':
+              PrzykladZapisuWspolrzednychDoStrumienia(std::cout,prostokat);
+  if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/prostokat.dat",prostokat)) return 1;
   Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
   std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
   std::cin.ignore(100000,'\n');
    //----------------------------------------------------------
    // Ponownie wypisuje wspolrzedne i rysuje prostokąt w innym miejscu.
    //
-  PrzykladZapisuWspolrzednychDoStrumienia(std::cout,50);
-  if (!PrzykladZapisuWspolrzednychDoPliku("../datasets/prostokat.dat",50)) return 1;
-  Lacze.Rysuj(); // <- Tutaj gnuplot rysuje, to co zapisaliśmy do pliku
-  std::cout << "Naciśnij ENTER, aby kontynuowac" << std::endl;
-  std::cin.ignore(100000,'\n');
+
+       
+       default:
+              break;
+
+}
+}
+
+
+
 
   // Z bazy projektu-wydmuszki Boiler Plate C++:
   // Bring in the dummy class from the example source,
   // just to show that it is accessible from main.cpp.
-  Dummy d = Dummy();
-  return d.doSomething() ? 0 : -1;
+
+
+  /*Dummy d = Dummy();
+  return d.doSomething() ? 0 : -1;*/
+
+
+
 }
+
+
+
