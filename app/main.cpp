@@ -219,7 +219,7 @@ switch(wybor)
 
               
 
-              prostokat.rotacja(macierzsinicos,prostokat);
+              prostokat.rotacja(macierzsinicos);
 
               std::cout << prostokat;
 
@@ -231,7 +231,8 @@ switch(wybor)
        case 'p':     
                      std::cout << "Podaj wartosci wektora(np. 1-enter 1-enter):" << std::endl;
                      std::cin >> wektor_przes;
-                     prostokat.przesuniecie(wektor_przes, prostokat);
+                     prostokat.przesuniecie(wektor_przes);
+                     std::cout << prostokat;
               break;
        case 'w':
                      std::cout << "Wierzcholki:" << prostokat << std::endl;

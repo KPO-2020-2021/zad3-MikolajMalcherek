@@ -22,9 +22,11 @@ class rectangle{
 
     Vector &operator () (int row,  int column);
 
-    rectangle rotacja(Matrix macierzsinicos, rectangle& prostokat);
+    rectangle rotacja(Matrix macierzsinicos);
 
-    rectangle przesuniecie(Vector wektor_przes, rectangle& prostokat);
+rectangle przesuniecie(Vector wektor_przes);
+
+void check_length();
 };
 
 

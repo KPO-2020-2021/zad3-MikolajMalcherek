@@ -123,7 +123,7 @@ Vector Vector::operator / (const double &tmp) {
  */
 const double &Vector::operator [] (int index) const {
     if (index < 0 || index >= SIZE) {
-        std::cerr << "Error: Wektor jest poza zasiegiem!" << std::endl;
+        throw "Error: Wektor jest poza zasiegiem!" ;
     } // lepiej byłoby rzucić wyjątkiem stdexcept
     return size[index];
 }
@@ -159,7 +159,7 @@ std::ostream &operator << (std::ostream &out, Vector const &tmp) {
 
 
 /******************************************************************************
- |  Przeciazenie operatora >>                                                 |
+ |  Przeciazenie operatora >>                                                |
  |  Argumenty:                                                                |
  |      in - strumien wyjsciowy,                                              |
  |      tmp - wektor.                                                         |
@@ -174,11 +174,31 @@ std::istream &operator >> (std::istream &in, Vector &tmp) {
 
 
 
-Vector Vector::operator == (const Vector &v) {
+/*bool Vector::operator == (const Vector &v) {
     Vector result;
     for (int i = 0; i < SIZE; ++i) {
-        v[i] == size[i] ;
+        if(v[i] != size[i])
+            return false;
     }
 
-    return v;
+    return true;
+}*/
+
+ double Vector::length(const Vector &v)
+ {
+        return sqrt(pow(size[0]-v[0],2)+pow(size[1]-v[1],2));
+ }
+
+ /******************************************************************************
+ |  Realizuje przyrównanie dwoch wektorow.                                    |
+ |  Argumenty:                                                                |
+ |      v - drugi skladnik porównania.                                        |
+ |  Zwraca:                                                                   |
+ |      true or false                                                         |
+ */
+ bool Vector::operator == ( const Vector &v) const {
+    for (int i = 0; i < SIZE; ++i) {
+        if (v[i] != size[i]) return false;
+    }
+    return true;
 }
