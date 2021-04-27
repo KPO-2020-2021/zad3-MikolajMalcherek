@@ -184,4 +184,53 @@ Matrix Matrix::obliczaniesinicos(double a,Matrix &macierzsinicos)
     return macierzsinicos;
 }
 
+double Matrix::wyznacznikgaussa()
+{
+     double ratio;
+	 int i,j,k;
 
+     /* Setting precision and writing floating point values in fixed-point notation. */
+     /*       std::cout<< std::setprecision(3)<< std::fixed;        */
+
+
+
+	/* Applying Gauss Elimination */
+	 for(i=0;i<=SIZE-2;i++)
+	 {
+		  if(value[i][i] == 0.0)
+		  {
+			   std::cout<<"Mathematical Error!";
+			   exit(0);
+		  }
+		  for(j=i+1;j<=SIZE;j++)
+		  {
+			   ratio = value[j][i]/value[i][i];
+
+			   for(k=0;k<=SIZE;k++)
+			   {
+			  		value[j][k] = value[j][k] - ratio*value[i][k];
+			   }
+		  }
+	 }
+
+
+
+
+    for(int g=0;g<SIZE;g++)
+    {
+        for(int l=0;l<SIZE;l++)
+        {
+            std::cout << value[g][l] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    double wyznacznik = value[0][0];
+    
+    for (int h=0;h<SIZE;h++)
+    {
+        wyznacznik=value[h][h];
+    }
+    std::cout << wyznacznik ;
+    return wyznacznik;
+}

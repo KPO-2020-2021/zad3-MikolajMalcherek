@@ -28,6 +28,7 @@ public:
     const double &operator () (unsigned int row, unsigned int column) const;
 
     Matrix obliczaniesinicos(double a,Matrix &macierzsinicos);
+    double wyznacznikgaussa();
 };
 
 

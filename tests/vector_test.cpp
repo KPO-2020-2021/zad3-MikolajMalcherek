@@ -328,3 +328,20 @@ TEST_CASE("Matrix - operator () ")
 
   CHECK(zmienna==tablica[1][1]);
 }
+
+/*
+TEST_CASE("Matrix - wyliczanie wyznacznika macierzy")
+{
+  double tablica[2][2];
+  tablica[0][0]=2;
+  tablica[0][1]=1;
+  tablica[1][0]=3;
+  tablica[1][1]=1;
+  Matrix macierz=Matrix(tablica);
+  double wyznacznik = macierz.wyznacznikgaussa();
+  double wynik=5;
+
+  CHECK(wynik==wyznacznik);
+
+}
+*/
