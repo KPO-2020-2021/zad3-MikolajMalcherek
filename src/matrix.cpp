@@ -168,7 +168,12 @@ std::ostream &operator<<(std::ostream &out, const Matrix &mat) {
 }
 
 
-
+/*-------------------------------------------------------------------------------------------------------     
+|                                                                                                        |
+|        Obliczanie sinusa oraz cosinusa zadanego do obrotu kata i wpisanie tych wartosci do macierzy,   |
+|          ktora wykorzystamy w mainie przed uzyciem metody rotacji w pliku naglowkowym rectangle.cpp    | 
+|                                                                                                        |
+|--------------------------------------------------------------------------------------------------------*/
 
 Matrix Matrix::obliczaniesinicos(double a,Matrix &macierzsinicos)
 {
@@ -184,17 +189,23 @@ Matrix Matrix::obliczaniesinicos(double a,Matrix &macierzsinicos)
     return macierzsinicos;
 }
 
+
+
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------     
+|                                                                                                        |
+|       Obliczanie wyznacznika metoda Gaussa, w ktorej macierz stopniowo zamieniamy na diagonalna        |   
+|                                                                                                        |
+|--------------------------------------------------------------------------------------------------------*/
 double Matrix::wyznacznikgaussa()
 {
      double ratio;
 	 int i,j,k;
 
-     /* Setting precision and writing floating point values in fixed-point notation. */
-     /*       std::cout<< std::setprecision(3)<< std::fixed;        */
 
-
-
-	/* Applying Gauss Elimination */
 	 for(i=0;i<=SIZE-2;i++)
 	 {
 		  if(value[i][i] == 0.0)
@@ -212,9 +223,6 @@ double Matrix::wyznacznikgaussa()
 			   }
 		  }
 	 }
-
-
-
 
     for(int g=0;g<SIZE;g++)
     {

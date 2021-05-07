@@ -162,6 +162,13 @@ rectangle rectangle::operator+(Vector tmp)
     return result;
 }
 
+
+
+/*------------------------------------------------------------| 
+|                                                             |
+|   Metoda rotacji prostokata o macierz sinusow i cosinusow   |
+|                                                             |
+|-------------------------------------------------------------*/
 rectangle rectangle::rotacja(Matrix macierzsinicos)
 {
 
@@ -176,6 +183,16 @@ rectangle rectangle::rotacja(Matrix macierzsinicos)
     return *this;
 }
 
+
+
+
+
+
+/*------------------------------------------------------------| 
+|                                                             |
+|         Metoda przesuniecia prostokatu o dany wektor        |
+|                                                             |
+|-------------------------------------------------------------*/
 rectangle rectangle::przesuniecie(Vector wektor_przes)
 {
     for (int i = 0; i < SIZE; ++i)
@@ -190,3 +207,4 @@ rectangle rectangle::przesuniecie(Vector wektor_przes)
 
     return *this;
 }
+
